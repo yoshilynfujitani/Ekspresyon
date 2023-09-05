@@ -5,6 +5,7 @@ import Form from "../Form/Form";
 
 import Card from "../../Components/Card";
 import Pagination from "../../Components/Pagination";
+import Filter from "../../../UI/Filter";
 
 const Feed = () => {
   const { isLoading, feeds, count } = useFeeds();
@@ -13,6 +14,7 @@ const Feed = () => {
 
   return (
     <div>
+      <Filter />
       {feeds.map((feed) => (
         <Card feed={feed} key={feed.id} />
       ))}

@@ -1,9 +1,16 @@
 import supabase from "./supabase";
 
-export async function getFeed({ page }) {
+export async function getFeed({ page, filter }) {
   let query = supabase.from("feed").select("*", {
     count: "exact",
   });
+  if (filter === "all")
+    query = supabase.from("feed").select("*", {
+      count: "exact",
+    });
+  else {
+    query = query.eq("genre", filter);
+  }
   if (page) {
     const from = (page - 1) * 10;
     const to = from + 10 - 1;

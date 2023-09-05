@@ -4,15 +4,17 @@ import { useSearchParams } from "react-router-dom";
 
 export function useFeeds() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get("page");
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const filter = !searchParams.get("genre") ? "all" : searchParams.get("genre");
+
   console.log(page);
   const {
     isLoading,
     data: { data: feeds, count } = {},
     error,
   } = useQuery({
-    queryKey: ["feeds", page],
-    queryFn: () => getFeed({ page }),
+    queryKey: ["feeds", page, filter],
+    queryFn: () => getFeed({ page, filter }),
   });
 
   return { isLoading, feeds, error, count };

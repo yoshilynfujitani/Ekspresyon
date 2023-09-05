@@ -5,9 +5,9 @@ const Pagination = ({ count }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Get the current page from the URL search params or default to 1
-  const currentPage = searchParams.get("page")
-    ? Number(searchParams.get("page"))
-    : 1;
+  const currentPage = !searchParams.get("page")
+    ? 1
+    : Number(searchParams.get("page"));
 
   const pageCount = Math.ceil(count / 10);
 
