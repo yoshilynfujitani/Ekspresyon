@@ -4,9 +4,10 @@ import { useFeeds } from "./useFeed";
 import Form from "../Form/Form";
 
 import Card from "../../Components/Card";
+import Pagination from "../../Components/Pagination";
 
 const Feed = () => {
-  const { isLoading, feeds } = useFeeds();
+  const { isLoading, feeds, count } = useFeeds();
 
   if (isLoading) return <Spinner />;
 
@@ -17,6 +18,7 @@ const Feed = () => {
       ))}
 
       <Form />
+      <Pagination count={count} />
     </div>
   );
 };

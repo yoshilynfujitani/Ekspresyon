@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Feed from "./Pages/Feed/Feed";
 import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +17,11 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Feed />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Feed />} />
+          </Routes>
+        </BrowserRouter>
       </QueryClientProvider>
       <Toaster
         position="top-center"
