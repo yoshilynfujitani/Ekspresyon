@@ -3,6 +3,7 @@ import Feed from "./Pages/Feed/Feed";
 import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +20,7 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Feed />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

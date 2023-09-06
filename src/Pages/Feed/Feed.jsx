@@ -6,6 +6,7 @@ import Form from "../Form/Form";
 import Card from "../../Components/Card";
 import Pagination from "../../Components/Pagination";
 import Filter from "../../../UI/Filter";
+import Modal from "../../../UI/Modal";
 
 const Feed = () => {
   const { isLoading, feeds, count } = useFeeds();
@@ -13,7 +14,7 @@ const Feed = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Filter />
       {feeds.map((feed) => (
         <Card feed={feed} key={feed.id} />
