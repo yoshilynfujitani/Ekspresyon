@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
+import FeedContent from "./Pages/Feed/FeedContent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,10 +18,10 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/feed/:id" element={<FeedContent />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

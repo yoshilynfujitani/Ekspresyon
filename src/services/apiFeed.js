@@ -1,5 +1,15 @@
 import supabase from "./supabase";
 
+// export async function getGenre() {
+//   const { data, error } = await supabase.from("feed").select("genre");
+//   if (error) {
+//     console.log(error);
+//     throw new Error("Feeds could not be loaded");
+//   }
+
+//   return data;
+// }
+
 export async function getFeed({ page, filter }) {
   let query = supabase.from("feed").select("*", {
     count: "exact",
@@ -12,8 +22,8 @@ export async function getFeed({ page, filter }) {
     query = query.eq("genre", filter);
   }
   if (page) {
-    const from = (page - 1) * 10;
-    const to = from + 10 - 1;
+    const from = (page - 1) * 9;
+    const to = from + 9 - 1;
     query = query.range(from, to);
   }
 

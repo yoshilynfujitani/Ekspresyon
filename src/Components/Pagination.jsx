@@ -9,7 +9,7 @@ const Pagination = ({ count }) => {
     ? 1
     : Number(searchParams.get("page"));
 
-  const pageCount = Math.ceil(count / 10);
+  const pageCount = Math.ceil(count / 9);
 
   function previous() {
     const prevPage = currentPage > 1 ? currentPage - 1 : 1;
@@ -25,13 +25,23 @@ const Pagination = ({ count }) => {
 
   return (
     <div>
-      <button onClick={previous} disabled={currentPage === 1}>
-        Previous
-      </button>
-      <h1>{currentPage}</h1>
-      <button onClick={next} disabled={currentPage === pageCount}>
-        Next
-      </button>
+      <div className="join">
+        <button
+          className="join-item btn"
+          onClick={previous}
+          disabled={currentPage === 1}
+        >
+          «
+        </button>
+        <button className="join-item btn">{currentPage}</button>
+        <button
+          className="join-item btn"
+          onClick={next}
+          disabled={currentPage === pageCount}
+        >
+          »
+        </button>
+      </div>
     </div>
   );
 };
