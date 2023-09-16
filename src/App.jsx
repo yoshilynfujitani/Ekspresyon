@@ -2,9 +2,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Feed from "./Pages/Feed/Feed";
 import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import FeedContent from "./Pages/Feed/FeedContent";
+import Login from "./Pages/Auth/Login";
+import ProtectedRoute from "./Pages/ProtectedRoute";
+import AppLayOut from "./Pages/AppLayOut";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,8 +23,18 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/feed/:id" element={<FeedContent />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayOut />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="home" />} />
+              <Route path="home" element={<Home />} />
+              <Route path="/feed/:id" element={<FeedContent />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

@@ -7,7 +7,6 @@ export function useFeeds() {
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
   const filter = !searchParams.get("genre") ? "all" : searchParams.get("genre");
 
-  console.log(page);
   const {
     isLoading,
     data: { data: feeds, count } = {},
